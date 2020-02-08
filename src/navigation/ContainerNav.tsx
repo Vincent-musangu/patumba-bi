@@ -26,7 +26,7 @@ const ContainerNav: React.FC<RouteComponentProps> = (
 							before={(itemState: any) => (
 								<ItemAvatar
 									itemState={itemState}
-									appearance="report"
+									appearance="square"
 									size="large"
 								/>
 							)}
@@ -53,11 +53,6 @@ const ContainerNav: React.FC<RouteComponentProps> = (
 							onClick={() => props.history.push("/mtn")}
 							isSelected={props.location.pathname === "/mtn"}
 							text="MTN"
-						/>
-						<Item
-							onClick={() => props.history.push("/sacco")}
-							isSelected={props.location.pathname === "/sacco"}
-							text="SACCO"
 						/>
 					</div>
 				)}

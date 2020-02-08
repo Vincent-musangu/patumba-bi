@@ -14,7 +14,7 @@ interface President {
 	totalRepayAmount: string;
 }
 
-export const caption = "SACCO Reports";
+export const caption = "SACCO ";
 
 export const createHead = (withWidth: boolean) => {
 	return {

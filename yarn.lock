@@ -134,6 +134,14 @@
     "@atlaskit/theme" "^9.2.4"
     "@babel/runtime" "^7.0.0"
 
+"@atlaskit/icon-file-type@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@atlaskit/icon-file-type/-/icon-file-type-5.0.1.tgz#1f8420018d38acdc9bbcac798ccdb611edb0ab5a"
+  integrity sha512-Frd3eizn87f873lRIiOw7uPmKyZvEUmiBIsLhAumpGEZHpBHsCNBuPdGSZNjVcYfSox8aSLMYTznxtqwrlyoVQ==
+  dependencies:
+    "@atlaskit/theme" "^9.1.6"
+    tslib "^1.9.3"
+
 "@atlaskit/icon@^19.0.6", "@atlaskit/icon@^19.1.0":
   version "19.1.0"
   resolved "https://registry.yarnpkg.com/@atlaskit/icon/-/icon-19.1.0.tgz#50e7050765a6d055cf0005f18a189f9eb80e3753"
@@ -312,7 +320,7 @@
     lodash.set "^4.3.2"
     prop-types "^15.5.10"
 
-"@atlaskit/theme@^9.2.4", "@atlaskit/theme@^9.2.6", "@atlaskit/theme@^9.5.0":
+"@atlaskit/theme@^9.1.6", "@atlaskit/theme@^9.2.4", "@atlaskit/theme@^9.2.6", "@atlaskit/theme@^9.5.0":
   version "9.5.0"
   resolved "https://registry.yarnpkg.com/@atlaskit/theme/-/theme-9.5.0.tgz#1bf6f3e39baf7a1a3c1e798d18848bedecdf2107"
   integrity sha512-xkYdw3AypG5j0sU/RDwHnEn9vL1ISbWCn3K78Zi9y5loRXOLYObpVxIkdNkunUUOVbgzTyHkG+YX6YhKf12fjg==
@@ -2092,6 +2100,15 @@
     semver "^6.3.0"
     tsutils "^3.17.1"
 
+"@use-hooks/axios@^1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@use-hooks/axios/-/axios-1.3.1.tgz#d89e4fd5a9dee97d45c7fb4b10ff3c6fcc897337"
+  integrity sha512-hzNIf7P736L6gdbHY1tYkI0Pu3gz2RaVi6N7URx0B0bp1qd0fq+2JfpNru5c6VxUY/rra6NfgAi8Nz4TtYVlDA==
+  dependencies:
+    axios "^0.19.0"
+    react "^16.8.1"
+    react-dom "^16.8.1"
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
@@ -2614,7 +2631,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.9.0.tgz#24390e6ad61386b0a747265754d2a17219de862c"
   integrity sha512-Uvq6hVe90D0B2WEnUqtdgY1bATGz3mw33nH9Y+dmA+w5DHvUmBgkr5rM/KCHpCsiFNRUfokW/szpPPgMK2hm4A==
 
-axios@^0.19.2:
+axios@^0.19.0, axios@^0.19.2:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
@@ -9299,7 +9316,7 @@ react-dev-utils@^10.0.0:
     strip-ansi "5.2.0"
     text-table "0.2.0"
 
-react-dom@^16.12.0:
+react-dom@^16.12.0, react-dom@^16.8.1:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
   integrity sha512-LMxFfAGrcS3kETtQaCkTKjMiifahaMySFDn71fZUNpPHZQEzmk/GiAeIT8JSOrHB23fnuCOMruL2a8NYlw+8Gw==
@@ -9497,7 +9514,7 @@ react-uid@^2.2.0:
   resolved "https://registry.yarnpkg.com/react-uid/-/react-uid-2.2.0.tgz#0f77e1e0594fbf29fc4fe528cc9aa415c5bf9159"
   integrity sha512-z+g5+hFOQ08hCfrGcJ1PNs+cmvH8Uq2CVzCmPeWBsUi5A4W4NWXR5jouledzy3oSKGMU9HOzf8zFuGi15TXJoQ==
 
-react@^16.12.0:
+react@^16.12.0, react@^16.8.1:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.12.0.tgz#0c0a9c6a142429e3614834d5a778e18aa78a0b83"
   integrity sha512-fglqy3k5E+81pA8s+7K0/T3DBCF0ZDOher1elBFzF7O6arXJgzyu/FW+COxFvAWXJoJN9KIZbT2LXlukwphYTA==
