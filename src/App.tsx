@@ -14,7 +14,7 @@ import Zamtel from "./pages/Zamtel";
 import MTN from "./pages/MTN";
 import Sacco from "./components/Sacco";
 import { ZamtelSec, AirtelSec, MtnSec } from "./components/Sec";
-import { SecData } from "./data/sec/secLayoutdata";
+
 import { ZamtelMonthlyUnitPrice, AirtelMonthlyUnitPrice, MtnMonthlyUnitPrice } from "./components/MonthlyUnits";
 import { ZamtelDailyUnitPrice, AirtelDailyUnitPrice, MtnDailyUnitPrice } from "./components/DailyUnitPrice";
 // import axios from "axios"
@@ -22,7 +22,8 @@ import { ZamtelDailyUnitPrice, AirtelDailyUnitPrice, MtnDailyUnitPrice } from ".
 
 const NavProvider: React.FC = () => {
 
-  console.log(SecData);
+
+
   return (
 
 
@@ -34,6 +35,7 @@ const NavProvider: React.FC = () => {
             productNavigation={ProductNav}
             containerNavigation={ContainerNavigator}
           >
+
             <div style={{ padding: "32px 40px" }}>
               <Switch>
 
@@ -65,6 +67,7 @@ const NavProvider: React.FC = () => {
           </LayoutManager>
         </NavigationProvider>
       </BrowserRouter>
+
     </Fragment>
   );
 };

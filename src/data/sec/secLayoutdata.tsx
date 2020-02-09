@@ -1,37 +1,32 @@
+import { useState, useEffect } from 'react';
 import { sec } from "./mockSec";
-import
-// React, 
-{
-  useState,
-  //  Fragment,
-  useEffect
-} from 'react'
 import axios from "axios"
 
+interface Sec {
+  date: string;
+  fundManagementFees: number;
+  custodianFees: number;
+  secLevyFees: number;
+  trustFees: number;
+}
 
-// let real: [];
 
-export const Rows = () => {
-  const [secData, setSecData] = useState()
+
+export const SecLayout = (mno: string, report: string) => {
+  const [secData, setSecData] = useState([])
+  // axios.get(`http://localhost:5000/${mno}/sec`).then((sec) => setSecData(sec.data))
 
   useEffect(() => {
 
-    axios.get("http://localhost:5000/zamtel/sec").then(res => {
-      // let datas = Object.keys(res.data).map(x => res.data[x])
-      // console.log(res.data);
+    axios.get(`http://localhost:5000/${mno}/${report}`).then((sec) => setSecData(sec.data))
 
-      setSecData(res.data);
-      // console.log(secData);
-      // real = secData
-
-    })
   })
 
-  const rows = secData.map((sec: Sec) => ({
+  return secData.map((sec: Sec) => ({
     cells: [
       {
-        key: sec.date,
-        content: sec.date
+        key: sec.date.slice(0, 10),
+        content: sec.date.slice(0, 10)
       },
       {
         key: sec.fundManagementFees,
@@ -51,22 +46,9 @@ export const Rows = () => {
       }
     ]
   }));
-
-
-
-  return rows
 };
 
 
-
-// console.log(results);
-interface Sec {
-  date: string;
-  fundManagementFees: number;
-  custodianFees: number;
-  secLevyFees: number;
-  trustFees: number;
-}
 
 export const caption = "Sec ";
 
@@ -109,28 +91,28 @@ export const createHead = (withWidth: boolean) => {
 };
 
 export const head = createHead(true);
-// export const rows = Secdata()
-// export const rows = sec.map((sec: Sec) => ({
-//   cells: [
-//     {
-//       key: sec.date,
-//       content: sec.date
-//     },
-//     {
-//       key: sec.fundManagementFees,
-//       content: sec.fundManagementFees
-//     },
-//     {
-//       key: sec.custodianFees,
-//       content: sec.custodianFees
-//     },
-//     {
-//       key: sec.secLevyFees,
-//       content: sec.secLevyFees
-//     },
-//     {
-//       key: sec.trustFees,
-//       content: sec.trustFees
-//     }
-//   ]
-// }));
+
+export const rows = sec.map((sec: Sec) => ({
+  cells: [
+    {
+      key: sec.date,
+      content: sec.date
+    },
+    {
+      key: sec.fundManagementFees,
+      content: sec.fundManagementFees
+    },
+    {
+      key: sec.custodianFees,
+      content: sec.custodianFees
+    },
+    {
+      key: sec.secLevyFees,
+      content: sec.secLevyFees
+    },
+    {
+      key: sec.trustFees,
+      content: sec.trustFees
+    }
+  ]
+}));
