@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { sec } from "./mockSec";
 import axios from "axios"
 
 interface Sec {
@@ -14,7 +13,6 @@ interface Sec {
 
 export const SecLayout = (mno: string, report: string) => {
   const [secData, setSecData] = useState([])
-  // axios.get(`http://localhost:5000/${mno}/sec`).then((sec) => setSecData(sec.data))
 
   useEffect(() => {
 
@@ -91,28 +89,3 @@ export const createHead = (withWidth: boolean) => {
 };
 
 export const head = createHead(true);
-
-export const rows = sec.map((sec: Sec) => ({
-  cells: [
-    {
-      key: sec.date,
-      content: sec.date
-    },
-    {
-      key: sec.fundManagementFees,
-      content: sec.fundManagementFees
-    },
-    {
-      key: sec.custodianFees,
-      content: sec.custodianFees
-    },
-    {
-      key: sec.secLevyFees,
-      content: sec.secLevyFees
-    },
-    {
-      key: sec.trustFees,
-      content: sec.trustFees
-    }
-  ]
-}));

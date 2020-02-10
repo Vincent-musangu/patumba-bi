@@ -1,12 +1,12 @@
-import React, { Fragment, useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { CSVLink } from "react-csv";
 import Button from "@atlaskit/button";
 import DynamicTable from "@atlaskit/dynamic-table";
-
-
+import axios from "axios"
 import { Label } from "@atlaskit/field-base";
 import { DatePicker } from "@atlaskit/datetime-picker";
+
 const Wrapper = styled.div`
   min-width: 600px;
 `;
@@ -38,18 +38,34 @@ export interface TableProps {
     head: HeadRow;
 }
 
+
 const Table: React.FC<TableProps> = ({ rows, caption, head }) => {
     const [startDate, setStartDate] = useState<string>("2020-01-01");
-    const [endDate, setEndDate] = useState<string>("2020-01-31");
+    const [endDate, setEndDate] = useState<string>("2020-02-31");
 
-    const rowData: CellRow[] = rows.filter(
-        rows =>
-            (rows.cells[0].content <= startDate && rows.cells[0].content >= endDate) ||
-            (rows.cells[0].content >= startDate && rows.cells[0].content <= endDate)
-    );
+    useEffect(() => {
+
+        axios.post(`http://localhost:5000/mtn/start`, {
+            "start": startDate,
+            "end": endDate
+        },
+            { headers: { 'Content-Type': 'application/json' } })
+        axios.post(`http://localhost:5000/zamtel/start`, {
+            "start": startDate,
+            "end": endDate
+        },
+            { headers: { 'Content-Type': 'application/json' } })
+        axios.post(`http://localhost:5000/airtel/start`, {
+            "start": startDate,
+            "end": endDate
+        },
+            { headers: { 'Content-Type': 'application/json' } })
+
+    }, [startDate, endDate])
+    const rowData: CellRow[] = rows
 
     return (
-        <Fragment>
+        < >
             <Label htmlFor="react-select-datepicker-1--input" label="From" />
             <DatePicker id="datepicker-1" defaultValue="2020-01-01" onChange={setStartDate} />
             <Label htmlFor="react-select-datepicker-2--input" label="To" />
@@ -76,7 +92,7 @@ const Table: React.FC<TableProps> = ({ rows, caption, head }) => {
             >
                 <Button appearance="primary">Download</Button>
             </CSVLink>
-        </Fragment>
+        </ >
     );
 };
 

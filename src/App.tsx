@@ -14,7 +14,7 @@ import Zamtel from "./pages/Zamtel";
 import MTN from "./pages/MTN";
 import Sacco from "./components/Sacco";
 import { ZamtelSec, AirtelSec, MtnSec } from "./components/Sec";
-
+import { SecLayout } from "./data/sec/secLayoutdata";
 import { ZamtelMonthlyUnitPrice, AirtelMonthlyUnitPrice, MtnMonthlyUnitPrice } from "./components/MonthlyUnits";
 import { ZamtelDailyUnitPrice, AirtelDailyUnitPrice, MtnDailyUnitPrice } from "./components/DailyUnitPrice";
 // import axios from "axios"
@@ -35,7 +35,8 @@ const NavProvider: React.FC = () => {
             productNavigation={ProductNav}
             containerNavigation={ContainerNavigator}
           >
-
+            {console.log("loging row", SecLayout("zamtel", "sec"))}
+            {/* {console.log(" rows", rows)} */}
             <div style={{ padding: "32px 40px" }}>
               <Switch>
 
