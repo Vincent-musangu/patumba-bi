@@ -33,52 +33,54 @@ interface HeadRow {
 }
 
 export interface TableProps {
-    rows: CellRow[];
     caption: string;
     head: HeadRow;
+    mno: string;
+    report: string;
 }
 
 
-const Table: React.FC<TableProps> = ({ rows, caption, head }) => {
-    const [startDate, setStartDate] = useState<string>("2020-01-01");
-    const [endDate, setEndDate] = useState<string>("2020-02-31");
+const Table: React.FC<TableProps> = ({ caption, head, mno, report }) => {
+    const [startDate, setStartDate] = useState<string>("2020-02-01");
+    const [endDate, setEndDate] = useState<string>("2020-03-01");
+    const [rowData, setRowData] = useState<any[]>([]);
 
     useEffect(() => {
+        axios.get(`http://localhost:5000/${mno}/${report}/${startDate}/${endDate}`)
+            .then((res) => setRowData(res.data));
+    }, [startDate, endDate, mno, report, rowData]);
 
-        axios.post(`http://localhost:5000/mtn/start`, {
-            "start": startDate,
-            "end": endDate
-        },
-            { headers: { 'Content-Type': 'application/json' } })
-        axios.post(`http://localhost:5000/zamtel/start`, {
-            "start": startDate,
-            "end": endDate
-        },
-            { headers: { 'Content-Type': 'application/json' } })
-        axios.post(`http://localhost:5000/airtel/start`, {
-            "start": startDate,
-            "end": endDate
-        },
-            { headers: { 'Content-Type': 'application/json' } })
 
-    }, [startDate, endDate])
-    const rowData: CellRow[] = rows
+    const rows = rowData.map((data) => {
+        let keys = Object.keys(data);
+        let cells = keys.map((val) => (
+
+            {
+                key: val,
+                content: data[val],
+            }
+        ))
+
+        return {
+            cells: cells
+        }
+    });
 
     return (
         < >
             <Label htmlFor="react-select-datepicker-1--input" label="From" />
-            <DatePicker id="datepicker-1" defaultValue="2020-01-01" onChange={setStartDate} />
+            <DatePicker id="datepicker-1" defaultValue="2020-02-01" onChange={setStartDate} />
             <Label htmlFor="react-select-datepicker-2--input" label="To" />
-            <DatePicker id="datepicker-2" defaultValue="2020-01-01" onChange={setEndDate} />
+            <DatePicker id="datepicker-2" defaultValue="2020-03-01" onChange={setEndDate} />
             <Wrapper>
                 <DynamicTable
                     caption={caption}
                     head={head}
-                    rows={rowData}
+                    rows={rows}
                     rowsPerPage={10}
                     defaultPage={1}
                     loadingSpinnerSize="large"
-                    isLoading={false}
+                    isLoading={rowData.length === 0 ? true : false}
                     isFixedSize
                     defaultSortKey="term"
                     defaultSortOrder="ASC"
@@ -86,9 +88,9 @@ const Table: React.FC<TableProps> = ({ rows, caption, head }) => {
             </Wrapper>
             <CSVLink
                 style={{ textDecoration: "none", float: "right" }}
-                data={rowData.map(rowData => rowData.cells.map(cells => cells.content))}
+                data={rows}
                 headers={head.cells.map(head => head.content)}
-                filename={`SACCOdata.csv`}
+                filename={`${mno.toUpperCase()} ${report.toUpperCase()} Report.csv`}
             >
                 <Button appearance="primary">Download</Button>
             </CSVLink>

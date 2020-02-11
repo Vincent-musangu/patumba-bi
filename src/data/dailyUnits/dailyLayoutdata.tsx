@@ -1,10 +1,3 @@
-import { unitsPrice } from "./dailyUnits"
-
-interface UnitPrice {
-  id: number;
-  date: string;
-  unitPrice: number;
-}
 
 export const caption = "Daily Units Price";
 
@@ -29,16 +22,3 @@ export const createHead = (withWidth: boolean) => {
 };
 
 export const head = createHead(true);
-
-export const rows = unitsPrice.map((unitsPrice: UnitPrice) => ({
-  cells: [
-    {
-      key: unitsPrice.date,
-      content: unitsPrice.date
-    },
-    {
-      key: unitsPrice.unitPrice,
-      content: unitsPrice.unitPrice
-    }
-  ]
-}));
