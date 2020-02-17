@@ -1,65 +1,80 @@
 import React from "react";
-import StarIcon from "@atlaskit/icon/glyph/star";
-import CreateIcon from "@atlaskit/icon/glyph/add";
-import SearchIcon from "@atlaskit/icon/glyph/search";
-import HelpIcon from "@atlaskit/icon/glyph/question-circle";
-import Avatar from "@atlaskit/avatar";
 import { GlobalNav } from "@atlaskit/navigation-next";
-// import { StrideWordmark } from "@atlaskit/logo";
-
+import { Link } from "react-router-dom";
+import { ContextConsumer } from "../App";
+import { IoIosLogIn, IoMdPersonAdd, IoMdHome, IoIosLogOut } from "react-icons/io";
 const GlobalNavigation: React.FC = () => {
-	return (
-		<div>
-			<GlobalNav
-				primaryItems={[
-					{
-						icon: StarIcon,
-						id: "star",
-						tooltip: "Starred and recent",
-						onClick: () => console.log("Search item clicked")
-					},
-					{
-						icon: SearchIcon,
-						id: "search",
-						tooltip: "Search",
-						onClick: () => console.log("Search item clicked")
-					},
-					{
-						icon: CreateIcon,
-						id: "create",
-						tooltip: "Create",
-						onClick: () => console.log("Create item clicked")
-					}
-				]}
-				secondaryItems={[
-					{
-						icon: HelpIcon,
-						id: "help",
-						onClick: () => console.log("Help item clicked"),
-						tooltip: "Help"
-					},
-					{
-						component: ({ className, onClick }: any) => (
-							<span className={className}>
-								<Avatar
-									borderColor="transparent"
-									isActive={false}
-									isHover={false}
-									size="small"
-									onClick={onClick}
-								/>
-							</span>
-						),
-						icon: null,
+  return (
+    <ContextConsumer>
+      {context =>
+        context && (
+          <div>
+            <GlobalNav
+              primaryItems={[
+                {
+                  component: ({ className, onClick }: any) => (
+                    <Link to="/">
+                      <span className={className}>
+                        <IoMdHome size={25} />
+                      </span>
+                    </Link>
+                  ),
+                  icon: null,
+                  id: "help",
+                  tooltip: "Help"
+                }
+                // {
+                // 	icon: SearchIcon,
+                // 	id: "search",
+                // 	tooltip: "Search",
+                // 	onClick: () => console.log("Search item clicked")
+                // },
+                // {
+                // 	icon: CreateIcon,
+                // 	id: "create",
+                // 	tooltip: "Create",
+                // 	onClick: () => console.log("Create item clicked")
+                // }
+              ]}
+              secondaryItems={[
+                {
+                  component: ({ className, onClick }: any) =>
+                    !context.auth ? (
+                      <Link to="/signin">
+                        <span className={className}>
+                          <IoIosLogIn size={25} />
+                        </span>
+                      </Link>
+                    ) : (
+                      <span className={className} onClick={() => context.setAuth(false)}>
+                        <IoIosLogOut size={25} />
+                      </span>
+                    ),
+                  icon: null,
+                  id: "help",
+                  tooltip: "Help"
+                },
+                {
+                  component: ({ className, onClick }: any) => (
+                    <Link to="/signup">
+                      <span className={className}>
+                        <IoMdPersonAdd size={25} />
+                      </span>
+                    </Link>
+                  ),
+                  icon: null,
 
-						id: "profile",
-						onClick: () => console.log("Profile item clicked"),
-						tooltip: "Profile"
-					}
-				]}
-			/>
-		</div>
-	);
+                  id: "profile",
+                  onClick: () => console.log("Profile item clicked"),
+                  tooltip: "Profile"
+                }
+              ]}
+            />
+          </div>
+        )
+      }
+    </ContextConsumer>
+  );
 };
 
 export default GlobalNavigation;
